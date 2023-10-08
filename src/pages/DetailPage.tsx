@@ -31,8 +31,25 @@ const DetailPage = () => {
 							<div className='info-intro'>
 								{/* <textarea placeholder='자세한 정보를 입력해주세요!'></textarea> */}
 							</div>
+							<div className='edit-button'>
+								<button>수정하기</button>
+							</div>
 							<h5>신청자 현황</h5>
-							<div className='info-applicant'></div>
+							<div className='info-applicant'>
+								<div className='applicant-form'>
+									<div className='applicant'>
+										<div className='profile-img'>.</div>
+										<div className='name'>
+											<span>홍길동</span>
+											<span>프론트엔드</span>
+										</div>
+									</div>
+									<div className='accept'>
+										<div>수락</div>
+										<div>거절</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div className='container-chat'>
@@ -151,12 +168,91 @@ const SDetailPage = styled.div`
                         outline:0;
                     } */
                 }
+                .edit-button {
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-right: 2%;
+
+                    button {
+                        font-size: 18px;
+                        background-color: transparent;
+                        border: 1px solid #57606f;
+                        padding: 10px 25px;
+                        border-radius: 50px;
+                    }
+                    button:hover {
+                        background-color: #ffeaa7;
+                        transition: 0.2s ease-in-out;
+                        color:#1f1f1f;
+                    }
+                }
 
                 .info-applicant {
                     margin: 10px 10px 20px;
                     border: 1px solid #57606f;
                     border-radius: 10px;
                     height: 200px;
+
+                    .applicant-form {
+                        display: flex;
+                    }
+
+                    .applicant {
+                        display: flex;
+                        margin: 10px 10px;
+                        border: 1px solid #57606f;
+                        padding: 10px 10px;
+                        width: 66%;
+                        
+                        .profile-img {
+                            background-color: #00ddff;
+                            width:35px;
+                            height:35px;
+                            border-radius: 50px;
+                        }
+                        .name {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            gap:100px;
+                            margin-left: 10%;
+
+                            span:nth-child(2) {
+                                color:grey;
+                                font-size:14px;
+                            }
+                        }
+                    }
+                    
+                    .accept {
+                        display: flex;
+                        justify-content: center;
+                        margin: 10px 5px;
+                        width: 30%;
+
+                        div:nth-child(1) {
+                            border-radius: 10px;
+                            width:45%;
+                            text-align: center;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: #00b894;
+                            color:#fff;
+                        }
+
+                        div:nth-child(2) {
+                            border-radius: 10px;
+                            width:45%;
+                            text-align: center;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: #ff7675;
+                            color:#fff;
+                            
+                        }
+                    }
                 }
             }
         }
