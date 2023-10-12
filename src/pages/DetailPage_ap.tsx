@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DetailPage = () => {
+const DetailPage_ap = () => {
 	return (
-		<SDetailPage>
+		<SDetailPage_ap>
 			<div className='wrapper'>
 				<div className='container-title'>
 					<div className='status'>모집중</div>
@@ -31,24 +31,13 @@ const DetailPage = () => {
 							<div className='info-intro'>
 								{/* <textarea placeholder='자세한 정보를 입력해주세요!'></textarea> */}
 							</div>
-							<div className='edit-button'>
-								<button>수정하기</button>
+							<h5>지원하기</h5>
+							<div className='apply_form'>
+								<div className='writing_space'></div>
 							</div>
-							<h5>신청자 현황</h5>
-							<div className='info-applicant'>
-								<div className='applicant-form'>
-									<div className='applicant'>
-										<div className='profile-img'>.</div>
-										<div className='name'>
-											<span>홍길동</span>
-											<span>프론트엔드</span>
-										</div>
-									</div>
-									<div className='accept'>
-										<div>수락</div>
-										<div>거절</div>
-									</div>
-								</div>
+							<div className='container-btn'>
+								<button>수정하기</button>
+								<button>지원하기</button>
 							</div>
 						</div>
 					</div>
@@ -60,13 +49,13 @@ const DetailPage = () => {
 					</div>
 				</div>
 			</div>
-		</SDetailPage>
+		</SDetailPage_ap>
 	);
 };
 
-export default DetailPage;
+export default DetailPage_ap;
 
-const SDetailPage = styled.div`
+const SDetailPage_ap = styled.div`
 	.container-title {
 		margin-top: 30px;
 		display: flex;
@@ -153,7 +142,7 @@ const SDetailPage = styled.div`
 					margin: 10px 10px 20px;
 					border: 1px solid #57606f;
 					border-radius: 10px;
-					height: 300px;
+					height: 250px;
 					/* textarea {
                         border:none;
                         border-radius: 10px;
@@ -166,32 +155,14 @@ const SDetailPage = styled.div`
                         outline:0;
                     } */
 				}
-				.edit-button {
-					display: flex;
-					justify-content: flex-end;
-					margin-right: 2%;
 
-					button {
-						font-size: 18px;
-						background-color: transparent;
-						border: 1px solid #57606f;
-						padding: 10px 25px;
-						border-radius: 50px;
-					}
-					button:hover {
-						background-color: #ffeaa7;
-						transition: 0.2s ease-in-out;
-						color: #1f1f1f;
-					}
-				}
-
-				.info-applicant {
+				.apply_form {
 					margin: 10px 10px 20px;
 					border: 1px solid #57606f;
 					border-radius: 10px;
 					height: 200px;
 
-					.applicant-form {
+					.writing_space {
 						display: flex;
 					}
 
@@ -252,6 +223,39 @@ const SDetailPage = styled.div`
 						}
 					}
 				}
+
+				.container-btn {
+					display: flex;
+					justify-content: flex-end;
+					gap: 2%;
+					margin-right: 2%;
+
+					button:nth-child(2) {
+						font-size: 18px;
+						background-color: #18dcff;
+						border: none;
+						padding: 10px 25px;
+						border-radius: 50px;
+						color: #fff;
+						&:hover {
+							background-color: #fff200;
+						}
+					}
+					button:nth-child(1) {
+						font-size: 18px;
+						background-color: #ffeaa7;
+						border: none;
+						padding: 10px 25px;
+						border-radius: 50px;
+						&:hover {
+							background-color: #fff200;
+						}
+					}
+					button:hover {
+						transition: 0.2s ease-in-out;
+						color: #1f1f1f;
+					}
+				}
 			}
 		}
 
@@ -273,7 +277,7 @@ const SDetailPage = styled.div`
 				border: 2px solid #fbd85d;
 				border-radius: 10px;
 				margin-top: 15px;
-				height: 100vh;
+				height: 70%;
 			}
 		}
 	}
