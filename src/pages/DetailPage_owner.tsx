@@ -1,11 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
-import { ChatInDetail } from '../components/index';
-import { SDetailPage } from './sDetailPage';
+import { ChatInDetail } from '../components';
+import { SDetailPage_owner } from './sDetailPage_owner';
 
-const DetailPage: React.FC = () => {
+const DetailPage_owner: React.FC = () => {
 	return (
-		<SDetailPage>
+		<SDetailPage_owner>
 			<div className='wrapper'>
 				<div className='container-title'>
 					<div className='status'>모집중</div>
@@ -33,21 +32,32 @@ const DetailPage: React.FC = () => {
 							<div className='info-intro'>
 								{/* <textarea placeholder='자세한 정보를 입력해주세요!'></textarea> */}
 							</div>
-							<h5>지원하기</h5>
-							<div className='apply_form'>
-								<div className='writing_space'></div>
-							</div>
-							<div className='container-btn'>
+							<div className='edit-button'>
 								<button>수정하기</button>
-								<button>지원하기</button>
+							</div>
+							<h5>신청자 현황</h5>
+							<div className='info-applicant'>
+								<div className='applicant-form'>
+									<div className='applicant'>
+										<div className='profile-img'>.</div>
+										<div className='name'>
+											<span>홍길동</span>
+											<span>프론트엔드</span>
+										</div>
+									</div>
+									<div className='accept'>
+										<div>수락</div>
+										<div>거절</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 					<ChatInDetail />
 				</div>
 			</div>
-		</SDetailPage>
+		</SDetailPage_owner>
 	);
 };
 
-export default DetailPage;
+export default DetailPage_owner;
