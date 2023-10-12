@@ -56,7 +56,15 @@ const DetailPage = () => {
 						<div className='writer'>
 							<span>채팅창</span>
 						</div>
-						<div className='chat'></div>
+						<div className='chat'>
+							<div className='chat_log'></div>
+							<div className='chat_input'>
+								<form>
+									<textarea placeholder='메세지를 입력해주세요.' />
+									<button>전송</button>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -104,19 +112,23 @@ const SDetailPage = styled.div`
 			margin-top: 30px;
 
 			.writer {
-				margin: 0 5px;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
 				color: #1f1f1f;
-				font-size: 20px;
+				font-size: 18.5px;
 				font-weight: 500;
+				border: 2px solid #fbd85d;
+				background-color: #ffeaa7;
+				border-radius: 10px;
+				padding: 10px 18px;
 			}
 
 			.info {
 				border: 2px solid #fbd85d;
 				border-radius: 10px;
 				margin-top: 15px;
+				background-color: #ffeaa763;
 
 				h5 {
 					margin: 22px 3% 10px;
@@ -132,6 +144,7 @@ const SDetailPage = styled.div`
 					display: flex;
 					justify-content: flex-start;
 					gap: 5%;
+					background-color: #fff;
 
 					.details_top {
 						margin: 10px 5%;
@@ -154,6 +167,7 @@ const SDetailPage = styled.div`
 					border: 1px solid #57606f;
 					border-radius: 10px;
 					height: 300px;
+					background-color: #fff;
 					/* textarea {
                         border:none;
                         border-radius: 10px;
@@ -173,15 +187,16 @@ const SDetailPage = styled.div`
 
 					button {
 						font-size: 18px;
-						background-color: transparent;
-						border: 1px solid #57606f;
+						background-color: #fde184;
+						border: none;
 						padding: 10px 25px;
 						border-radius: 50px;
+						color: #1f1f1f;
 					}
 					button:hover {
-						background-color: #ffeaa7;
+						background-color: #18dcff;
 						transition: 0.2s ease-in-out;
-						color: #1f1f1f;
+						color: #fff;
 					}
 				}
 
@@ -190,6 +205,7 @@ const SDetailPage = styled.div`
 					border: 1px solid #57606f;
 					border-radius: 10px;
 					height: 200px;
+					background-color: #fff;
 
 					.applicant-form {
 						display: flex;
@@ -260,20 +276,61 @@ const SDetailPage = styled.div`
 			margin-top: 30px;
 
 			.writer {
-				margin: 0 5px;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
 				color: #1f1f1f;
 				font-size: 20px;
 				font-weight: 500;
+				border: 2px solid #fbd85d;
+				background-color: #ffeaa7;
+				border-radius: 10px;
+				padding: 10px 18px;
+				text-align: center;
 			}
 
 			.chat {
 				border: 2px solid #fbd85d;
 				border-radius: 10px;
+				background-color: #ffeaa763;
 				margin-top: 15px;
-				height: 100vh;
+				height: 80%;
+
+				.chat_log {
+					height: 80%;
+					width: 100%;
+				}
+
+				.chat_input {
+					background-color: #fff;
+					height: 20%;
+					width: 100%;
+					border-radius: 10px;
+
+					form {
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+						height: 100%;
+
+						textarea {
+							height: 90%;
+							border: none;
+							outline: none;
+							box-shadow: none;
+							vertical-align: top;
+							padding: 10px 10px;
+							overflow: hidden;
+							resize: none;
+						}
+
+						button {
+							width: 80px;
+							height: 40px;
+							border: none;
+							border-radius: 10px;
+							margin-left: auto;
+							cursor: pointer;
+						}
+					}
+				}
 			}
 		}
 	}

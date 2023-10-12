@@ -45,7 +45,15 @@ const DetailPage_ap = () => {
 						<div className='writer'>
 							<span>채팅창</span>
 						</div>
-						<div className='chat'></div>
+						<div className='chat'>
+							<div className='chat_log'></div>
+							<div className='chat_input'>
+								<form>
+									<textarea placeholder='메세지를 입력해주세요.' />
+									<button>전송</button>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -93,19 +101,23 @@ const SDetailPage_ap = styled.div`
 			margin-top: 30px;
 
 			.writer {
-				margin: 0 5px;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
 				color: #1f1f1f;
-				font-size: 20px;
+				font-size: 18.5px;
 				font-weight: 500;
+				border: 2px solid #fbd85d;
+				background-color: #ffeaa7;
+				border-radius: 10px;
+				padding: 10px 18px;
 			}
 
 			.info {
 				border: 2px solid #fbd85d;
 				border-radius: 10px;
 				margin-top: 15px;
+				background-color: #ffeaa763;
 
 				h5 {
 					margin: 22px 3% 10px;
@@ -121,6 +133,7 @@ const SDetailPage_ap = styled.div`
 					display: flex;
 					justify-content: flex-start;
 					gap: 5%;
+					background-color: #fff;
 
 					.details_top {
 						margin: 10px 5%;
@@ -143,6 +156,7 @@ const SDetailPage_ap = styled.div`
 					border: 1px solid #57606f;
 					border-radius: 10px;
 					height: 250px;
+					background-color: #fff;
 					/* textarea {
                         border:none;
                         border-radius: 10px;
@@ -161,6 +175,7 @@ const SDetailPage_ap = styled.div`
 					border: 1px solid #57606f;
 					border-radius: 10px;
 					height: 200px;
+					background-color: #fff;
 
 					.writing_space {
 						display: flex;
@@ -229,6 +244,19 @@ const SDetailPage_ap = styled.div`
 					justify-content: flex-end;
 					gap: 2%;
 					margin-right: 2%;
+					margin-bottom: 2%;
+
+					button:nth-child(1) {
+						font-size: 18px;
+						background-color: #ffeaa7;
+						border: none;
+						padding: 10px 25px;
+						border-radius: 50px;
+						cursor: pointer;
+						/* &:hover {
+							background-color: #fff200;
+						} */
+					}
 
 					button:nth-child(2) {
 						font-size: 18px;
@@ -237,24 +265,16 @@ const SDetailPage_ap = styled.div`
 						padding: 10px 25px;
 						border-radius: 50px;
 						color: #fff;
-						&:hover {
+						cursor: pointer;
+						/* &:hover {
 							background-color: #fff200;
-						}
+						} */
 					}
-					button:nth-child(1) {
-						font-size: 18px;
-						background-color: #ffeaa7;
-						border: none;
-						padding: 10px 25px;
-						border-radius: 50px;
-						&:hover {
-							background-color: #fff200;
-						}
-					}
-					button:hover {
+
+					/* button:hover {
 						transition: 0.2s ease-in-out;
 						color: #1f1f1f;
-					}
+					} */
 				}
 			}
 		}
@@ -264,20 +284,61 @@ const SDetailPage_ap = styled.div`
 			margin-top: 30px;
 
 			.writer {
-				margin: 0 5px;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
 				color: #1f1f1f;
 				font-size: 20px;
 				font-weight: 500;
+				border: 2px solid #fbd85d;
+				background-color: #ffeaa7;
+				border-radius: 10px;
+				padding: 10px 18px;
+				text-align: center;
 			}
 
 			.chat {
 				border: 2px solid #fbd85d;
 				border-radius: 10px;
+				background-color: #ffeaa763;
 				margin-top: 15px;
-				height: 70%;
+				height: 80%;
+
+				.chat_log {
+					height: 80%;
+					width: 100%;
+				}
+
+				.chat_input {
+					background-color: #fff;
+					height: 20%;
+					width: 100%;
+					border-radius: 10px;
+
+					form {
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+						height: 100%;
+
+						textarea {
+							height: 90%;
+							border: none;
+							outline: none;
+							box-shadow: none;
+							vertical-align: top;
+							padding: 10px 10px;
+							overflow: hidden;
+							resize: none;
+						}
+
+						button {
+							width: 80px;
+							height: 40px;
+							border: none;
+							border-radius: 10px;
+							margin-left: auto;
+							cursor: pointer;
+						}
+					}
+				}
 			}
 		}
 	}
