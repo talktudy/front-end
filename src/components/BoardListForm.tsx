@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { useLocation } from 'react-router';
 import { BsCalendarEvent } from 'react-icons/bs';
 import { ko } from 'date-fns/esm/locale';
 import ReactQuill from 'react-quill';
@@ -17,6 +18,9 @@ const tomorrow = new Date(today);
 tomorrow.setDate(today.getDate() + 1);
 
 const BoardListForm = () => {
+	const location = useLocation();
+	const isEditPage = location.pathname.includes('edit');
+
 	const [endDate, setEndDate] = useState<Date>(tomorrow);
 	const [editor, setEditor] = useState<ReactQuill.Value>('');
 
@@ -81,12 +85,23 @@ const BoardListForm = () => {
 				</label>
 				<input type='text' name='tags' value='' placeholder='#태그입력' />
 			</EditorFormField>
-			<SubmitButton>등록하기</SubmitButton>
+			<SubmitButton>{isEditPage ? '수정하기' : '등록하기'}</SubmitButton>
 		</FormWrapper>
 	);
 };
 
 export default BoardListForm;
+
+export const FormHeader = styled(StyledStack)`
+	max-width: 600px;
+	margin: 0 auto;
+	border-bottom: 1px solid #ddd;
+`;
+
+export const FormTitle = styled.h2`
+	margin-right: 8px;
+	font-size: 20px;
+`;
 
 const FormWrapper = styled.form`
 	max-width: 600px;
