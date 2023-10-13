@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import LogoImage from '../img/logo.png';
 
-const Login = () => {
+const LoginPage = () => {
 	return (
 		<LoginWrap>
 			<div>
@@ -33,7 +32,7 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default LoginPage;
 
 const LoginWrap = styled.div`
 	width: 400px;

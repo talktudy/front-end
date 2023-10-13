@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Header from './Main/Header';
-import ViewMain from './Main/ViewMain';
-import Login from './Login/Login';
+import { Header } from './components/index';
+import { MainPage, LoginPage, DetailPage, DetailPage_owner } from './pages/index';
+import './global.css';
 
 function App() {
-	// const [count, setCount] = useState(0);
-
 	return (
 		<>
 			<Header />
 			<Routes>
-				<Route path='/' element={<ViewMain />} />
-				<Route path='/login' element={<Login />} />
+				<Route path='/' element={<MainPage />} />
+				<Route path='/login' element={<LoginPage />} />
+				<Route path='/detail' element={<DetailPage />} />
+				<Route path='/detail/own' element={<DetailPage_owner />} />
 			</Routes>
 		</>
 	);

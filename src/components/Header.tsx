@@ -68,10 +68,9 @@ const LogoImg = styled.img`
 
 const Menu = styled.nav`
 	display: flex;
-  width: 20rem;
-  justify-content: space-evenly;
-  // margin-left: -100px;
-	}
+	width: 20rem;
+	justify-content: space-evenly;
+	// margin-left: -100px;
 `;
 
 const MenuTitle = styled.div`
