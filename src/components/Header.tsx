@@ -29,6 +29,7 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn }) => {
 					<>
 						{/* <AlarmIcon />
 						<UserIcon /> */}
+						<Link to='/register'>새 글 쓰기</Link>
 					</>
 				) : (
 					<>
