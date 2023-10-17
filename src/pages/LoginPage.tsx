@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import LogoImage from '../img/logo.png';
 
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
 	return (
 		<LoginWrap>
 			<div>

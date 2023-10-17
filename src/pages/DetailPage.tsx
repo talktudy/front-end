@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { ChatInDetail } from '../components/index';
 import { SDetailPage } from './sDetailPage';
 
