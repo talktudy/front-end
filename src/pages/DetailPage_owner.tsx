@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChatInDetail } from '../components';
 import { SDetailPage_owner } from './sDetailPage_owner';
+import ReactQuill from 'react-quill';
 
 const DetailPage_owner: React.FC = () => {
 	return (
@@ -31,6 +32,7 @@ const DetailPage_owner: React.FC = () => {
 							<h5>모집 소개</h5>
 							<div className='info-intro'>
 								{/* <textarea placeholder='자세한 정보를 입력해주세요!'></textarea> */}
+								<ReactQuill />
 							</div>
 							<div className='edit-button'>
 								<button>수정하기</button>
