@@ -105,6 +105,17 @@ export const SDetailPage_owner = styled.div`
                     textarea:focus {
                         outline:0;
                     } */
+					.editor {
+						width: 100%;
+
+						.ql-toolbar.ql-snow {
+							border-top: none !important;
+							border-radius: 10px;
+						}
+						.ql-container.ql-snow {
+							border: none;
+						}
+					}
 				}
 				.edit-button {
 					display: flex;

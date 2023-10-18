@@ -1,6 +1,5 @@
 import { BsPencil } from 'react-icons/bs';
 import styled from 'styled-components';
-
 import BoardListForm, { FormHeader, FormTitle } from '@/components/BoardListForm';
 import ContentWrapper from '@components/ContentWrapper';
 import Icon from '@/components/Icon';
