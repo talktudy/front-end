@@ -107,7 +107,7 @@ export const SDetailPage_owner = styled.div`
                     } */
 					.editor {
 						width: 100%;
-
+						height: 300px;
 						.ql-toolbar.ql-snow {
 							border-top: none !important;
 							border-radius: 10px;
