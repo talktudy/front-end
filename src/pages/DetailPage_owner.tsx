@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { ChatInDetail } from '../components';
 import { SDetailPage_owner } from './sDetailPage_owner';
 import ReactQuill from 'react-quill';
@@ -6,7 +6,8 @@ import 'react-quill/dist/quill.snow.css';
 
 const DetailPage_owner: React.FC = () => {
 	const quillRef = useRef<ReactQuill | null>(null);
-
+	const [edit, setEdit] = useState<boolean>(false);
+	// 수정 버튼을 누르면 React-Quill이 보이도록 구현
 	const modules = {
 		toolbar: {
 			container: [
@@ -63,6 +64,8 @@ const DetailPage_owner: React.FC = () => {
 			],
 		},
 	};
+
+	const handleEdit = () => {};
 	return (
 		<SDetailPage_owner>
 			<div className='wrapper'>
@@ -94,7 +97,7 @@ const DetailPage_owner: React.FC = () => {
 								<ReactQuill theme='snow' ref={quillRef} className='editor' modules={modules} />
 							</div>
 							<div className='edit-button'>
-								<button>수정하기</button>
+								<button onClick={handleEdit}>수정하기</button>
 							</div>
 							<h5>신청자 현황</h5>
 							<div className='info-applicant'>
