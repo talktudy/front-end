@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChatInDetail } from '../components/index';
 import { SDetailPage } from './sDetailPage';
+import { AiOutlineEye } from 'react-icons/ai';
+import axios from 'axios';
 
 const DetailPage: React.FC = () => {
+	const [data, setData] = useState({});
+
+	// 게시자가 작성한 데이터를 불러오는 함수
+	const getData = async () => {
+		const res = await axios.get('주소');
+		setData(res.data);
+	};
+	useEffect(() => {
+		getData();
+	}, []);
 	return (
 		<SDetailPage>
 			<div className='wrapper'>
@@ -14,7 +26,9 @@ const DetailPage: React.FC = () => {
 					<div className='container-info'>
 						<div className='writer'>
 							<span>작성자: 염승준</span>
-							<span>조회수: 98</span>
+							<span>
+								<AiOutlineEye />: 98
+							</span>
 						</div>
 						<div className='info'>
 							<h5>모집 정보</h5>
@@ -30,7 +44,17 @@ const DetailPage: React.FC = () => {
 							</div>
 							<h5>모집 소개</h5>
 							<div className='info-intro'>
-								{/* <textarea placeholder='자세한 정보를 입력해주세요!'></textarea> */}
+								{/* {data?.content && (
+									<div
+										style={{
+											width: '60vw',
+											whiteSpace: 'normal',
+										}}
+										dangerouslySetInnerHTML={{
+											__html: DOMPurify.sanitize(String(data?.content)),
+										}}
+									/>
+								)} */}
 							</div>
 							<h5>지원하기</h5>
 							<div className='apply_form'>

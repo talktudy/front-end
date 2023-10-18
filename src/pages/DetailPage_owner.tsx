@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { ChatInDetail } from '../components';
 import { SDetailPage_owner } from './sDetailPage_owner';
+import { AiOutlineEye } from 'react-icons/ai';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 const DetailPage_owner: React.FC = () => {
 	const quillRef = useRef<ReactQuill | null>(null);
-	const [edit, setEdit] = useState<boolean>(false);
-	// 수정 버튼을 누르면 React-Quill이 보이도록 구현
+	const [accept, setAccept] = useState<boolean>(false);
+	const [refuse, setRefuse] = useState<boolean>(false);
 	const modules = {
 		toolbar: {
 			container: [
@@ -65,7 +66,27 @@ const DetailPage_owner: React.FC = () => {
 		},
 	};
 
-	const handleEdit = () => {};
+	const handleSubmit = async () => {
+		const date = new Date();
+		// POST API 호출
+		// try {
+		// 	await createPost({
+		// 		title: title,
+		// 		content,
+		// 		date,
+		// 	}).then(res => console.log(res));
+		// } catch (error) {
+		// 	console.log(error);
+		// }
+	};
+
+	// 리스트에서 클릭시 삭제 구현
+	const handleAccept = () => {
+		setAccept(true);
+	};
+	const handleRefuse = () => {
+		setRefuse(true);
+	};
 	return (
 		<SDetailPage_owner>
 			<div className='wrapper'>
@@ -77,7 +98,9 @@ const DetailPage_owner: React.FC = () => {
 					<div className='container-info'>
 						<div className='writer'>
 							<span>작성자: 염승준</span>
-							<span>조회수: 98</span>
+							<span>
+								<AiOutlineEye />: 98
+							</span>
 						</div>
 						<div className='info'>
 							<h5>모집 정보</h5>
@@ -97,7 +120,7 @@ const DetailPage_owner: React.FC = () => {
 								<ReactQuill theme='snow' ref={quillRef} className='editor' modules={modules} />
 							</div>
 							<div className='edit-button'>
-								<button onClick={handleEdit}>수정하기</button>
+								<button onClick={handleSubmit}>수정하기</button>
 							</div>
 							<h5>신청자 현황</h5>
 							<div className='info-applicant'>
@@ -110,8 +133,8 @@ const DetailPage_owner: React.FC = () => {
 										</div>
 									</div>
 									<div className='accept'>
-										<div>수락</div>
-										<div>거절</div>
+										<div onClick={handleAccept}>수락</div>
+										<div onClick={handleRefuse}>거절</div>
 									</div>
 								</div>
 							</div>

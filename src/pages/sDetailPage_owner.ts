@@ -48,6 +48,11 @@ export const SDetailPage_owner = styled.div`
 				background-color: #ffeaa7;
 				border-radius: 10px;
 				padding: 10px 18px;
+
+				span:nth-child(2) {
+					display: flex;
+					align-items: center;
+				}
 			}
 
 			.info {
@@ -155,6 +160,7 @@ export const SDetailPage_owner = styled.div`
 						border-radius: 10px;
 						padding: 10px 10px;
 						width: 66%;
+						background-color: #ffeaa763;
 
 						.profile-img {
 							background-color: #00ddff;
@@ -191,6 +197,7 @@ export const SDetailPage_owner = styled.div`
 							align-items: center;
 							background-color: #00b894;
 							color: #fff;
+							cursor: pointer;
 						}
 
 						div:nth-child(2) {
@@ -202,6 +209,7 @@ export const SDetailPage_owner = styled.div`
 							align-items: center;
 							background-color: #ff7675;
 							color: #fff;
+							cursor: pointer;
 						}
 					}
 				}

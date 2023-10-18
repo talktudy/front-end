@@ -48,6 +48,11 @@ export const SDetailPage = styled.div`
 				background-color: #ffeaa7;
 				border-radius: 10px;
 				padding: 10px 18px;
+
+				span:nth-child(2) {
+					display: flex;
+					align-items: center;
+				}
 			}
 
 			.info {
