@@ -1,11 +1,12 @@
-import styled from 'styled-components';
-import Stack, { StyledStack } from './Stack';
-import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
-
+import { Link } from 'react-router-dom';
 import { AiOutlineEye } from 'react-icons/ai';
 import { FiUsers } from 'react-icons/fi';
-import Icon from './Icon';
+
+import Stack, { StyledStack } from '@/components/Stack';
+import Icon from '@/components/Icon';
+
+import styled from 'styled-components';
 
 const interestsMap: { [key: string]: string } = {
 	NONE: '전체',
