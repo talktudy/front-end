@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import LogoImage from '../img/logo.png';
 
@@ -19,8 +19,8 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn }) => {
 
 			{/* 메뉴 영역 */}
 			<Menu>
-				<MenuTitle>스터디</MenuTitle>
-				<MenuTitle>팀 채팅</MenuTitle>
+				<MenuTitle to='/'>스터디</MenuTitle>
+				<MenuTitle to='/chat'>팀 채팅</MenuTitle>
 			</Menu>
 
 			{/* 사용자 영역 */}
@@ -74,11 +74,12 @@ const Menu = styled.nav`
 	// margin-left: -100px;
 `;
 
-const MenuTitle = styled.div`
+const MenuTitle = styled(NavLink)`
+	margin-right: 2rem;
 	font-size: 2rem;
 	color: white;
 	text-shadow: 4px 2px 2px gray;
-	margin-right: 2rem;
+	text-decoration: none;
 `;
 
 const UserSection = styled.div`
