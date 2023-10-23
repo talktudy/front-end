@@ -11,6 +11,7 @@ import {
 	EditPage,
 } from '@pages/index';
 import './global.css';
+import JoinPage from './pages/JoinPage';
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 					<Route path='/register' element={<RegisterPage />} />
 					<Route path=':boardId/edit' element={<EditPage />} />
 					<Route path='/login' element={<LoginPage />} />
+					<Route path='/join' element={<JoinPage />} />
 					<Route path='/detail' element={<DetailPage />} />
 					<Route path='/detail/own' element={<DetailPage_owner />} />
 				</Routes>
