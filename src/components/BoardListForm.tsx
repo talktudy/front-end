@@ -74,6 +74,17 @@ const BoardListForm = () => {
 			title: `${formJson.title}`,
 		};
 
+		// 유효성 검사
+		if (!data.title.length) {
+			alert('제목을 입력해 주세요.');
+			return;
+		}
+
+		if (!data.description.length) {
+			alert('모집 설명을 입력해 주세요');
+			return;
+		}
+
 		if (isStudyRegisterForm) {
 			postRegisterStudyForm(data);
 		} else {
