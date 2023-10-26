@@ -1,7 +1,7 @@
 import { BsPencil } from 'react-icons/bs';
 
 import BoardListForm, { FormHeader, FormTitle } from '@/components/BoardListForm';
-import ContentWrapper from '@components/ContentWrapper';
+import ContentWrapper from '@/components/Content/ContentWrapper';
 import Icon from '@/components/Icon';
 
 const EditPage = () => {

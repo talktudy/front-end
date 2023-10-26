@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface StackStyledProps {
 	$direction?: 'row' | 'column';
+	$wrap?: 'wrap' | 'nowrap';
 	$justify?:
 		| 'flex-start'
 		| 'center'
@@ -28,6 +29,11 @@ export default Stack;
 
 export const StyledStack = styled.div<StackStyledProps>`
 	display: flex;
+	${props =>
+		props.$wrap &&
+		css`
+			flex-wrap: ${props.$wrap};
+		`}
 	${props =>
 		props.$direction &&
 		css`

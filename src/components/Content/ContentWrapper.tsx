@@ -7,7 +7,7 @@ const ContentWrapper = ({ children }: PropsWithChildren) => {
 
 export default ContentWrapper;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
 	width: 1280px;
 	margin: 0 auto;
 	padding: 20px 0;

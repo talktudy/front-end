@@ -2,7 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Header } from '@components/index';
 import {
-	MainPage,
+	ChatListPage,
+	BoardListPage,
 	LoginPage,
 	DetailPage,
 	DetailPage_owner,
@@ -17,7 +18,8 @@ function App() {
 			<Header />
 			<main>
 				<Routes>
-					<Route path='/' element={<MainPage />} />
+					<Route path='/' element={<BoardListPage />} />
+					<Route path='/chat' element={<ChatListPage />} />
 					<Route path='/register' element={<RegisterPage />} />
 					<Route path=':boardId/edit' element={<EditPage />} />
 					<Route path='/login' element={<LoginPage />} />
