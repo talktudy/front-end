@@ -25,9 +25,7 @@ interface IData {
 const DetailPage = () => {
 	const [data, setData] = useState<IData>({});
 	const { id } = useParams();
-	console.log(id);
 
-	// 게시자가 작성한 데이터를 불러오는 함수
 	const getData = async () => {
 		try {
 			const res = await axios.get(
