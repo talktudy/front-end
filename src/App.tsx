@@ -8,6 +8,7 @@ import {
 	DetailPage_owner,
 	RegisterPage,
 	EditPage,
+	JoinPage,
 } from '@pages/index';
 import './global.css';
 
@@ -23,6 +24,7 @@ function App() {
 					<Route path=':boardId/edit' element={<EditPage />} />
 					<Route path='/login' element={<LoginPage />} />
 					<Route path='/detail/:id' element={<DetailPage />} />
+					<Route path='/join' element={<JoinPage />} />
 					<Route path='/detail/own' element={<DetailPage_owner />} />
 				</Routes>
 			</main>
