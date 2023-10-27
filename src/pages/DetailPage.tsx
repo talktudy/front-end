@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChatInDetail } from '../components/index';
 import { SDetailPage } from './sDetailPage';
 import { AiOutlineEye } from 'react-icons/ai';
@@ -25,6 +25,7 @@ interface IData {
 const DetailPage = () => {
 	const [data, setData] = useState<IData>({});
 	const { id } = useParams();
+	const [text, setText] = useState<string>('');
 
 	const getData = async () => {
 		try {
@@ -43,9 +44,38 @@ const DetailPage = () => {
 			console.log(error);
 		}
 	};
+
+	const onChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+		setText(event.target.value);
+	};
+
+	const submitHandler = (event: React.FormEvent) => {
+		event.preventDefault();
+
+		// 토큰을 받아와서 headers에 추가하기.
+		// const applyStudy = async () => {
+		// 	try {
+		// 		const res = await axios.post(
+		// 			`https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app:443/api/study/apply/${2}`,
+		// 			text,
+		// 			{
+		// 				headers: {
+		// 					'Content-Type': 'application/json',
+		// 					Authorization: 'token',
+		// 				},
+		// 				withCredentials: true,
+		// 			}
+		// 		);
+		// 	} catch (error) {
+		// 		console.log(error);
+		// 	}
+		// };
+		// applyStudy();
+		// console.log(text);
+	};
 	useEffect(() => {
 		getData();
-	}, [id]);
+	}, [id, data.currentCapacity]);
 
 	return (
 		<SDetailPage>
@@ -62,7 +92,7 @@ const DetailPage = () => {
 					<div className='container-below'>
 						<div className='container-info'>
 							<div className='writer'>
-								<span>작성자: 염승준</span>
+								<span>작성자: {data.nickname}</span>
 								<span>
 									<AiOutlineEye />: {data.views}
 								</span>
@@ -101,13 +131,21 @@ const DetailPage = () => {
 									)}
 								</div>
 								<h5>지원하기</h5>
-								<div className='apply_form'>
-									<div className='writing_space'></div>
-								</div>
-								<div className='container-btn'>
-									<button>수정하기</button>
-									<button>지원하기</button>
-								</div>
+								<form onSubmit={submitHandler}>
+									<div className='apply_form'>
+										<div className='writing_space'>
+											<textarea
+												placeholder='간단하게 자기소개를 해주세요.'
+												value={text}
+												onChange={onChangeHandler}
+											></textarea>
+										</div>
+									</div>
+									<div className='container-btn'>
+										{/* <button>수정하기</button> */}
+										<button type='submit'>지원하기</button>
+									</div>
+								</form>
 							</div>
 						</div>
 						<ChatInDetail />

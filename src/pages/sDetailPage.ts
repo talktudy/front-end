@@ -114,17 +114,6 @@ export const SDetailPage = styled.div`
 					height: 250px;
 					background-color: #fff;
 					padding: 10px 10px;
-					/* textarea {
-                        border:none;
-                        border-radius: 10px;
-                        resize: none;
-                        width: 100%;
-                        padding: 10px 10px;
-                        box-sizing: border-box;
-                    }
-                    textarea:focus {
-                        outline:0;
-                    } */
 				}
 
 				.apply_form {
@@ -136,6 +125,19 @@ export const SDetailPage = styled.div`
 
 					.writing_space {
 						display: flex;
+
+						textarea {
+							border: none;
+							border-radius: 10px;
+							resize: none;
+							width: 100%;
+							padding: 10px 10px;
+							box-sizing: border-box;
+							font-size: 17px;
+						}
+						textarea:focus {
+							outline: 0;
+						}
 					}
 
 					.applicant {
@@ -203,7 +205,7 @@ export const SDetailPage = styled.div`
 					margin-right: 2%;
 					margin-bottom: 2%;
 
-					button:nth-child(1) {
+					button:nth-child(0) {
 						font-size: 18px;
 						background-color: #ffeaa7;
 						border: none;
@@ -215,7 +217,7 @@ export const SDetailPage = styled.div`
 						} */
 					}
 
-					button:nth-child(2) {
+					button:nth-child(1) {
 						font-size: 18px;
 						background-color: #18dcff;
 						border: none;
