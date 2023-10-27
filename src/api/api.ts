@@ -13,6 +13,16 @@ export const getStudyLists = async (query: string) => {
 	}
 };
 
+export const getChatLists = async (query: string) => {
+	try {
+		const response = await request.get(`/team${query}`);
+		if (response.status !== 200) throw Error();
+		return response.data;
+	} catch (error: unknown) {
+		console.log(error);
+	}
+};
+
 // 모집
 export const postRegisterStudyForm = async (data: StudyContent) => {
 	try {

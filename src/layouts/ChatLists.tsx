@@ -33,7 +33,7 @@ const ChatLists = ({ data }: ChatLists) => {
 	return (
 		<StyledStack $wrap='wrap' $px={20} $mb={40}>
 			{data?.map(list => (
-				<CardWrapper>
+				<CardWrapper key={list.teamId}>
 					<Card key={list.teamId} href={`/detail/${list.teamId}`} size='sm'>
 						<Container>
 							<TimeStamp type='lastUpdated' title='업데이트' date={list.updatedDate} />
