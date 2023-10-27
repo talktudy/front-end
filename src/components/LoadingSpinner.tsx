@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 interface LoadingSpinner {
+	position?: string;
 	message: string;
 	dimmed?: boolean;
 	color?: string;
 }
 
-const LoadingSpinner = ({ message, dimmed = true, color = '#fff' }: LoadingSpinner) => {
+const LoadingSpinner = ({ position, message, dimmed = true, color = '#fff' }: LoadingSpinner) => {
 	return (
-		<LoadingDimmed $hasDimmed={dimmed}>
+		<LoadingDimmed $position={position} $hasDimmed={dimmed}>
 			<Loadingbar $color={color} />
 			<LoadingText $color={color}>{message}</LoadingText>
 		</LoadingDimmed>
@@ -17,8 +18,8 @@ const LoadingSpinner = ({ message, dimmed = true, color = '#fff' }: LoadingSpinn
 
 export default LoadingSpinner;
 
-const LoadingDimmed = styled.div<{ $hasDimmed: boolean }>`
-	position: fixed;
+const LoadingDimmed = styled.div<{ $position?: string; $hasDimmed: boolean }>`
+	position: ${props => (props.$position ? props.$position : 'fixed')};
 	top: 0;
 	left: 0;
 	bottom: 0;
