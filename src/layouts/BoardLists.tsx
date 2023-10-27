@@ -7,9 +7,10 @@ import Stack, { StyledStack } from '@/components/Stack';
 import Icon from '@/components/Icon';
 
 import styled from 'styled-components';
+import EmptyData from '@/components/EmptyData';
 
 const interestsMap: { [key: string]: string } = {
-	NONE: '전체',
+	NONE: '자유',
 	FRONTEND: '프론트엔드',
 	BACKEND: '백엔드',
 	DESIGNER: '디자이너',
@@ -37,8 +38,11 @@ interface BoardLists {
 }
 
 const BoardLists = ({ data }: BoardLists) => {
+	const hasNoLists = !data || data.length <= 0;
+
 	return (
 		<StyledStack as='ul' $wrap='wrap' $px={20} $mb={40}>
+			{hasNoLists && <EmptyData message='필터링에 맞는 스터디가 존재하지 않습니다!' />}
 			{data?.map(list => (
 				<BoardListWrapper key={list.studyId}>
 					<BoardList as={Link} to={`/detail/${list.studyId}`}>

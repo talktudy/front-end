@@ -3,35 +3,55 @@ import { StyledStack } from './Stack';
 import Icon from './Icon';
 import styled from 'styled-components';
 
-const Pagination = () => {
+interface Pagination {
+	currentPage: number;
+	totalPages?: number;
+	onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+const Pagination = ({ currentPage = 0, totalPages = 0, onClick }: Pagination) => {
+	const pagination: number[] = [];
+	pagination.fill(0, 0, totalPages);
+
 	return (
 		<StyledStack as='ul' $justify='center'>
 			<PageList>
-				<PageButton type='button'>
+				<PageButton
+					type='button'
+					disabled={currentPage === 0}
+					data-id={currentPage - 1 <= 0 ? 0 : currentPage - 1}
+				>
 					<Icon $iconColor='#1c2025'>
 						<FiChevronLeft />
 					</Icon>
 				</PageButton>
 			</PageList>
+			{pagination.length > 0 ? (
+				pagination.map((_, index) => (
+					<PageList>
+						<PageButton
+							type='button'
+							$isCurrent={currentPage === index}
+							onClick={onClick}
+							data-id={index}
+						>
+							{index + 1}
+						</PageButton>
+					</PageList>
+				))
+			) : (
+				<PageList>
+					<PageButton type='button' $isCurrent={true} onClick={onClick}>
+						1
+					</PageButton>
+				</PageList>
+			)}
 			<PageList>
-				<PageButton type='button' $isCurrent>
-					1
-				</PageButton>
-			</PageList>
-			<PageList>
-				<PageButton type='button'>2</PageButton>
-			</PageList>
-			<PageList>
-				<PageButton type='button'>3</PageButton>
-			</PageList>
-			<PageList>
-				<PageButton type='button'>4</PageButton>
-			</PageList>
-			<PageList>
-				<PageButton type='button'>5</PageButton>
-			</PageList>
-			<PageList>
-				<PageButton type='button'>
+				<PageButton
+					type='button'
+					disabled={currentPage + 1 === totalPages}
+					data-id={currentPage + 2 > totalPages ? totalPages : currentPage + 1}
+				>
 					<Icon $iconColor='#1c2025'>
 						<FiChevronRight />
 					</Icon>
@@ -54,7 +74,12 @@ const PageButton = styled.button<{ $isCurrent?: boolean }>`
 	border-radius: 4px;
 	background-color: ${props => (props.$isCurrent ? '#ffe579' : 'transparent')};
 
-	&:hover {
-		background-color: #eee;
+	&:disabled {
+		cursor: default;
+		background-color: transparent;
+	}
+
+	&:not(:disabled):hover {
+		background-color: ${props => (props.$isCurrent ? '#ffe579' : '#eee')};
 	}
 `;

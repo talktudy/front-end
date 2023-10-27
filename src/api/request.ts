@@ -5,8 +5,11 @@ const request = axios.create({
 	headers: { 'Content-Type': 'application/json' },
 });
 
+const noTokenURLLists = ['study'];
+
 request.interceptors.request.use(
 	config => {
+		if (!noTokenURLLists.includes(config.url || '')) return config;
 		const token = localStorage.getItem('TOKEN');
 		if (!token) return config;
 		config.headers.Authorization = token;

@@ -2,6 +2,18 @@ import { StudyContent } from '@/types/study';
 import request from './request';
 import { ChatContent } from '@/types/chat';
 
+// 리스트
+export const getStudyLists = async (query: string) => {
+	try {
+		const response = await request.get(`/study${query}`);
+		if (response.status !== 200) throw Error();
+		return response.data;
+	} catch (error: unknown) {
+		console.log(error);
+	}
+};
+
+// 모집
 export const postRegisterStudyForm = async (data: StudyContent) => {
 	try {
 		const response = await request.post('/study/register', JSON.stringify(data));
@@ -24,6 +36,7 @@ export const postRegisterChatForm = async (data: ChatContent) => {
 	}
 };
 
+// 이미지 업로드
 export const updateImage = async (data: { file: File }) => {
 	try {
 		const response = await request.post('/upload', data, {
