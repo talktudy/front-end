@@ -23,3 +23,15 @@ export const postRegisterChatForm = async (data: ChatContent) => {
 		alert('모집 폼 등록이 되지 않았습니다. 다시 시도해주세요.');
 	}
 };
+
+export const updateImage = async (data: { file: File }) => {
+	try {
+		const response = await request.post('/upload', data, {
+			headers: { 'Content-Type': 'multipart/form-data' },
+		});
+		if (response.status !== 200) throw Error();
+		return response.data;
+	} catch (error: unknown) {
+		alert('이미지가 등록되지 못했습니다. 다시 시도해 주세요');
+	}
+};
