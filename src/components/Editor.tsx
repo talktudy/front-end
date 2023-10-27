@@ -1,10 +1,10 @@
-import { useMemo, useState } from 'react';
-import { updateImage } from '@/api/api';
-import { useRef } from 'react';
+import { useMemo, useState, useRef } from 'react';
 import ReactQuill from 'react-quill';
 
+import LoadingSpinner from '@/components/LoadingSpinner';
+import { updateImage } from '@/api/api';
+
 import 'react-quill/dist/quill.snow.css';
-import styled from 'styled-components';
 
 interface Editor {
 	html: ReactQuill.Value;
@@ -106,10 +106,7 @@ const Editor = ({ html, setHtml }: Editor) => {
 	return (
 		<>
 			{isImageLoading && (
-				<LoadingDimmed>
-					<Loadingbar />
-					<ImageLoadingText>이미지를 업로드 중입니다, 잠시만 기다려 주세요.</ImageLoadingText>
-				</LoadingDimmed>
+				<LoadingSpinner message='이미지를 업로드 중입니다, 잠시만 기다려 주세요.' />
 			)}
 			<ReactQuill
 				theme='snow'
@@ -124,46 +121,3 @@ const Editor = ({ html, setHtml }: Editor) => {
 };
 
 export default Editor;
-
-const LoadingDimmed = styled.div`
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
-	background-color: #000;
-	z-index: 8888;
-	opacity: 0.8;
-`;
-
-const Loadingbar = styled.span`
-	display: inline-block;
-	width: 48px;
-	height: 48px;
-	margin-bottom: 20px;
-	border: 5px solid #fff;
-	border-bottom-color: transparent;
-	border-radius: 50%;
-	animation: rotation 1s linear infinite;
-	box-sizing: border-box;
-
-	@keyframes rotation {
-		0% {
-			transform: rotate(0deg);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
-	}
-`;
-
-const ImageLoadingText = styled.p`
-	color: #fff;
-	z-index: 9999;
-`;
