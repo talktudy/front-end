@@ -1,7 +1,8 @@
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { StyledStack } from './Stack';
-import Icon from './Icon';
 import styled from 'styled-components';
+
+import { StyledStack } from '@components/Stack';
+import Icon from '@components/Icon';
 
 interface Pagination {
 	currentPage: number;

@@ -1,20 +1,21 @@
 import { useCallback, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import styled from 'styled-components';
 
 import ContentWrapper from '@/components/Content/ContentWrapper';
-import Stack, { StyledStack } from '@/components/Stack';
 import ContentTitle from '@/components/Content/ContentTitle';
-import Pagination from '@/components/Pagination';
 import FilterWrapper from '@/components/Filter/FilterWrapper';
-import Title from '@/components/Filter/Title';
 import FilterButton from '@/components/Filter/FilterButton';
 import FilterInput from '@/components/Filter/FilterInput';
+import LoadingSpinner from '@/components/LoadingSpinner';
+import Pagination from '@/components/Pagination';
+import Stack, { StyledStack } from '@/components/Stack';
+import Title from '@/components/Filter/Title';
 
 import BoardLists from '@/layouts/BoardLists';
+
 import { getStudyLists } from '@/api/api';
-import { useQuery } from 'react-query';
-import LoadingSpinner from '@/components/LoadingSpinner';
-import styled from 'styled-components';
-import { useSearchParams } from 'react-router-dom';
 
 const interests = [
 	{ id: 'NONE', value: '자유' },

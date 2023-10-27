@@ -1,4 +1,5 @@
 import { AiOutlineEye } from 'react-icons/ai';
+import styled from 'styled-components';
 
 import Stack, { StyledStack } from '@/components/Stack';
 import Icon from '@/components/Icon';
@@ -12,8 +13,6 @@ import Caption from '@/components/CardList/Caption';
 import CardFooter from '@/components/CardList/CardFooter';
 
 import BgChat from '@/assets/bg_chat.png';
-
-import styled from 'styled-components';
 
 interface ChatLists {
 	data?: {
