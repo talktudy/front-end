@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChatInDetail, Loading } from '../components/index';
 import { SDetailPage } from './sDetailPage';
 import { AiOutlineEye } from 'react-icons/ai';
@@ -23,7 +23,7 @@ interface IData {
 }
 
 const DetailPage = () => {
-	const [data, setData] = useState<IData>({});
+	const [data, setData] = useState({} as IData);
 	const { id } = useParams();
 	const [text, setText] = useState<string>('');
 	const [loading, setLoading] = useState<boolean>(true);
