@@ -67,7 +67,7 @@ const DetailPage_owner: React.FC = () => {
 	};
 
 	const handleSubmit = async () => {
-		const date = new Date();
+		// const date = new Date();
 		// POST API 호출
 		// try {
 		// 	await createPost({
@@ -87,6 +87,7 @@ const DetailPage_owner: React.FC = () => {
 	const handleRefuse = () => {
 		setRefuse(true);
 	};
+	console.log(accept, refuse);
 	return (
 		<SDetailPage_owner>
 			<div className='wrapper'>
