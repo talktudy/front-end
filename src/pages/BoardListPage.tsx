@@ -78,7 +78,7 @@ const MainPage = () => {
 	return (
 		<ContentWrapper>
 			<ContentTitle>
-				스터디에서 함께 할 <br />
+				스터디를 함께 할 <br />
 				멋진 동료를 찾고 있어요! 😎
 			</ContentTitle>
 
