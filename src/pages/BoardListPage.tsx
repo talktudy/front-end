@@ -97,18 +97,21 @@ const MainPage = () => {
 						name='orderBy'
 						label='🔥 인기순'
 						onChange={() => setNewOrderBy('views')}
+						checked={orderBy === 'views'}
 					/>
 					<FilterButton
 						id='maxCapacity'
 						name='orderBy'
 						label='👨‍👩‍👦‍👦 총 인원수'
 						onChange={() => setNewOrderBy('maxCapacity')}
+						checked={orderBy === 'maxCapacity'}
 					/>
 					<FilterButton
 						id='endDate'
 						name='orderBy'
 						label='🕐 마감일순'
 						onChange={() => setNewOrderBy('endDate')}
+						checked={orderBy === 'endDate'}
 					/>
 				</StyledStack>
 				<Title title='분야별 스터디 보기' />
