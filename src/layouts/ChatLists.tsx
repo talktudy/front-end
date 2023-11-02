@@ -1,4 +1,5 @@
 import { AiOutlineEye } from 'react-icons/ai';
+import styled from 'styled-components';
 
 import Stack, { StyledStack } from '@/components/Stack';
 import Icon from '@/components/Icon';
@@ -12,8 +13,6 @@ import Caption from '@/components/CardList/Caption';
 import CardFooter from '@/components/CardList/CardFooter';
 
 import BgChat from '@/assets/bg_chat.png';
-
-import styled from 'styled-components';
 
 interface ChatLists {
 	data?: {
@@ -33,7 +32,7 @@ const ChatLists = ({ data }: ChatLists) => {
 	return (
 		<StyledStack $wrap='wrap' $px={20} $mb={40}>
 			{data?.map(list => (
-				<CardWrapper>
+				<CardWrapper key={list.teamId}>
 					<Card key={list.teamId} href={`/detail/${list.teamId}`} size='sm'>
 						<Container>
 							<TimeStamp type='lastUpdated' title='업데이트' date={list.updatedDate} />
