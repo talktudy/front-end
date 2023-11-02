@@ -106,7 +106,9 @@ const ChatPage = () => {
 					{query.status === 'loading' && (
 						<LoadingSpinner position='absolute' dimmed={false} color='#99ccf3' message='로딩중' />
 					)}
-					{query.status === 'success' && <ChatLists data={query.data.content} />}
+					{query.status === 'success' && (
+						<ChatLists data={query.data ? query.data.content : null} />
+					)}
 				</ChatListWrapper>
 				<Pagination currentPage={0} totalPages={query.data?.totalPages} onClick={setNewPage} />
 			</Stack>

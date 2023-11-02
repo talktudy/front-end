@@ -11,6 +11,7 @@ import Interests from '@/components/CardList/Interests';
 import Tags from '@/components/CardList/Tags';
 import Caption from '@/components/CardList/Caption';
 import CardFooter from '@/components/CardList/CardFooter';
+import EmptyData from '@/components/EmptyData';
 
 import BgChat from '@/assets/bg_chat.png';
 
@@ -29,8 +30,10 @@ interface ChatLists {
 }
 
 const ChatLists = ({ data }: ChatLists) => {
+	const hasNoLists = !data || data.length <= 0;
 	return (
 		<StyledStack $wrap='wrap' $px={20} $mb={40}>
+			{hasNoLists && <EmptyData message='필터링에 맞는 스터디가 존재하지 않습니다!' />}
 			{data?.map(list => (
 				<CardWrapper key={list.teamId}>
 					<Card key={list.teamId} href={`/detail/${list.teamId}`} size='sm'>

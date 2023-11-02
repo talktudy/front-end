@@ -136,7 +136,9 @@ const MainPage = () => {
 					{query.status === 'loading' && (
 						<LoadingSpinner position='absolute' dimmed={false} color='#99ccf3' message='로딩중' />
 					)}
-					{query.status === 'success' && <BoardLists data={query.data.content} />}
+					{query.status === 'success' && (
+						<BoardLists data={query.data ? query.data.content : null} />
+					)}
 				</BoardListWrapper>
 
 				<Pagination currentPage={page} totalPages={query.data?.totalPages} onClick={setNewPage} />
