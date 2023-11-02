@@ -11,14 +11,7 @@ interface FilterButton {
 	checked?: boolean;
 }
 
-const FilterButton = ({
-	id,
-	name,
-	label,
-	onChange,
-	defaultChecked = false,
-	checked,
-}: FilterButton) => {
+const FilterButton = ({ id, name, label, onChange, defaultChecked, checked }: FilterButton) => {
 	return (
 		<Container $display='inline-block'>
 			<FilterInput
