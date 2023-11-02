@@ -1,8 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-import LogoImage from '../img/logo.png';
+import LogoImage from '@/img/logo.png';
 
 const Login = () => {
 	return (

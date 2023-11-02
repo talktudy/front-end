@@ -17,6 +17,20 @@ export const SDetailPage = styled.div`
 			text-align: center;
 		}
 
+		.status-done {
+			margin-left: 3%;
+			font-size: 20px;
+			font-weight: 500;
+			padding: 7px 12px;
+			box-sizing: border-box;
+			border-radius: 15px;
+			background-color: #636e72;
+			display: flex;
+			align-items: center;
+			text-align: center;
+			color: white;
+		}
+
 		.title {
 			margin-left: 20px;
 			font-size: 30px;
@@ -48,6 +62,11 @@ export const SDetailPage = styled.div`
 				background-color: #ffeaa7;
 				border-radius: 10px;
 				padding: 10px 18px;
+
+				span:nth-child(2) {
+					display: flex;
+					align-items: center;
+				}
 			}
 
 			.info {
@@ -94,17 +113,7 @@ export const SDetailPage = styled.div`
 					border-radius: 10px;
 					height: 250px;
 					background-color: #fff;
-					/* textarea {
-                        border:none;
-                        border-radius: 10px;
-                        resize: none;
-                        width: 100%;
-                        padding: 10px 10px;
-                        box-sizing: border-box;
-                    }
-                    textarea:focus {
-                        outline:0;
-                    } */
+					padding: 10px 10px;
 				}
 
 				.apply_form {
@@ -116,6 +125,19 @@ export const SDetailPage = styled.div`
 
 					.writing_space {
 						display: flex;
+
+						textarea {
+							border: none;
+							border-radius: 10px;
+							resize: none;
+							width: 100%;
+							padding: 10px 10px;
+							box-sizing: border-box;
+							font-size: 17px;
+						}
+						textarea:focus {
+							outline: 0;
+						}
 					}
 
 					.applicant {
@@ -183,7 +205,7 @@ export const SDetailPage = styled.div`
 					margin-right: 2%;
 					margin-bottom: 2%;
 
-					button:nth-child(1) {
+					button:nth-child(0) {
 						font-size: 18px;
 						background-color: #ffeaa7;
 						border: none;
@@ -195,7 +217,7 @@ export const SDetailPage = styled.div`
 						} */
 					}
 
-					button:nth-child(2) {
+					button:nth-child(1) {
 						font-size: 18px;
 						background-color: #18dcff;
 						border: none;

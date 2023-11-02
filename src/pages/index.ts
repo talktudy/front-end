@@ -5,6 +5,7 @@ import LoginPage from './LoginPage';
 import BoardListPage from './BoardListPage';
 import ChatListPage from './ChatListPage';
 import RegisterPage from './RegisterPage';
+import JoinPage from './JoinPage';
 
 export {
 	DetailPage,
@@ -14,4 +15,5 @@ export {
 	BoardListPage,
 	RegisterPage,
 	EditPage,
+	JoinPage,
 };
