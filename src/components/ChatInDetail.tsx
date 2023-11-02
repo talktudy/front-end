@@ -45,6 +45,7 @@ const ChatInDetail = () => {
 		setIsEnter(true);
 	};
 
+	// 예슬님 코드 merge후 axios interceptor 적용
 	const sendMessage = (msg: string) => {
 		stomp_client.send(
 			'/app/chat/message',
@@ -85,7 +86,7 @@ const ChatInDetail = () => {
 				<div className='chat_log'></div>
 				<div className='chat_input'>
 					<form onSubmit={onSubmit}>
-						<textarea placeholder='메세지를 입력해주세요.' onChange={onChange} />
+						<textarea placeholder='메세지를 입력해주세요.' onChange={onChange} value={message} />
 						<button type='submit'>전송</button>
 					</form>
 				</div>
