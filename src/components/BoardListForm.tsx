@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { useLocation } from 'react-router';
 import { BsCalendarEvent } from 'react-icons/bs';
+import { IoMdAdd } from 'react-icons/io';
 import { ko } from 'date-fns/esm/locale';
 import ReactQuill from 'react-quill';
 import DatePicker from 'react-datepicker';
@@ -12,6 +13,8 @@ import Icon from '@/components/Icon';
 import Editor from '@/components/Editor';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { postRegisterStudyForm, postRegisterChatForm } from '@/api/api';
+import { Interests } from '@/types/common';
 
 const today = new Date();
 const tomorrow = new Date(today);
@@ -21,21 +24,87 @@ const BoardListForm = () => {
 	const location = useLocation();
 	const isEditPage = location.pathname.includes('edit');
 
+	// 모집구분
+	const [registerType, setRegisterType] = useState('STUDY');
+	const isStudyRegisterForm = registerType === 'STUDY';
+
+	// 폼 관련
 	const [endDate, setEndDate] = useState<Date>(tomorrow);
 	const [editor, setEditor] = useState<ReactQuill.Value>('');
+	const [tagInput, setTagInput] = useState('');
+	const [tags, setTags] = useState<string[]>([]);
+
+	const changeRegisterType = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		setRegisterType(e.target.value);
+	};
+
+	const changeTagInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setTagInput(e.target.value);
+	};
+
+	const validateTag = () => {
+		const newTag = tagInput[0] === '#' ? tagInput.slice(1) : tagInput;
+
+		if (tags.includes(newTag)) {
+			alert('이미 해당 태그가 존재합니다.');
+			return;
+		}
+
+		setTags([...tags, newTag]);
+		setTagInput('');
+	};
+
+	const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
+		const form = e.target as HTMLFormElement;
+		const formData = new FormData(form);
+		const formJson = Object.fromEntries(formData.entries());
+
+		const convertedDate = `${endDate.getFullYear()}-${
+			endDate.getMonth() + 1
+		}-${endDate.getDate()}T00:00:00.000Z`;
+
+		const data = {
+			description: `${editor}`,
+			endDate: convertedDate,
+			interests: formJson.interests as Interests,
+			maxCapacity: Number(formJson.maxCapacity),
+			tag: tags.join(','),
+			title: `${formJson.title}`,
+		};
+
+		// 유효성 검사
+		if (!data.title.length) {
+			alert('제목을 입력해 주세요.');
+			return;
+		}
+
+		if (!data.description.length) {
+			alert('모집 설명을 입력해 주세요');
+			return;
+		}
+
+		if (isStudyRegisterForm) {
+			postRegisterStudyForm(data);
+		} else {
+			const { description, interests, tag, title } = data;
+			postRegisterChatForm({ description, interests, tag, title });
+		}
+	};
 
 	return (
-		<FormWrapper>
+		<FormWrapper onSubmit={handleForm}>
 			<FormField $align='center' $mb={10}>
 				<label htmlFor='type'>모집 구분</label>
-				<select name='type' id='type'>
-					<option value='1'>스터디</option>
-					<option value='2'>채팅</option>
+				<select name='type' id='type' onChange={changeRegisterType}>
+					<option value='STUDY'>스터디</option>
+					<option value='CHAT'>채팅</option>
 				</select>
 			</FormField>
 			<FormField $align='center' $mb={10}>
-				<label htmlFor='position'>모집 포지션</label>
-				<select name='position' id='position'>
+				<label htmlFor='interests'>모집 포지션</label>
+				<select name='interests' id='interests' defaultValue='NONE'>
 					<option value='NONE'>선택안함</option>
 					<option value='FRONTEND'>프론트엔드</option>
 					<option value='BACKEND'>백엔드</option>
@@ -46,44 +115,68 @@ const BoardListForm = () => {
 					<option value='DESIGNER'>디자이너</option>
 				</select>
 			</FormField>
-			<FormField $align='center' $mb={10}>
-				<label htmlFor='endDate'>모집 마감일</label>
-				<Calendar>
-					<DatePicker
-						dateFormat='yyyy-MM-dd'
-						selected={endDate}
-						onChange={date => date && setEndDate(date)}
-						locale={ko}
-					/>
-					<Icon className='icon' $size={32} $iconColor='#000'>
-						<BsCalendarEvent />
-					</Icon>
-				</Calendar>
-			</FormField>
-			<FormField $align='center' $mb={10}>
-				<label htmlFor='team'>모집 인원</label>
-				<select name='team' id='team'>
-					<option value='1'>1명</option>
-					<option value='2'>2명</option>
-					<option value='3'>3명</option>
-					<option value='4'>4명</option>
-					<option value='5'>5명</option>
-					<option value='6'>6명</option>
-					<option value='7'>7명</option>
-					<option value='8'>8명</option>
-					<option value='9'>9명</option>
-				</select>
-			</FormField>
+			{isStudyRegisterForm && (
+				<>
+					<FormField $align='center' $mb={10}>
+						<label htmlFor='endDate'>모집 마감일</label>
+						<Calendar>
+							<DatePicker
+								dateFormat='yyyy-MM-dd'
+								selected={endDate}
+								onChange={date => date && setEndDate(date)}
+								locale={ko}
+							/>
+							<Icon className='icon' $size={32} $iconColor='#000'>
+								<BsCalendarEvent />
+							</Icon>
+						</Calendar>
+					</FormField>
+					<FormField $align='center' $mb={10}>
+						<label htmlFor='maxCapacity'>모집 인원</label>
+						<select name='maxCapacity' id='maxCapacity' defaultValue='1'>
+							<option value='1'>1명</option>
+							<option value='2'>2명</option>
+							<option value='3'>3명</option>
+							<option value='4'>4명</option>
+							<option value='5'>5명</option>
+							<option value='6'>6명</option>
+							<option value='7'>7명</option>
+							<option value='8'>8명</option>
+							<option value='9'>9명</option>
+						</select>
+					</FormField>
+				</>
+			)}
 			<FormField $direction='column' $mb={10} $fieldWidth={100} $gap={10}>
 				<label htmlFor='title'>제목</label>
-				<input type='text' name='title' value='' placeholder='제목을 입력해 주세요.' />
+				<input type='text' name='title' defaultValue='' placeholder='제목을 입력해 주세요.' />
 			</FormField>
 			<EditorFormField $direction='column' $mb={10}>
 				<Editor html={editor} setHtml={setEditor} />
-				<label htmlFor='tags' className='srOnly'>
+				<label htmlFor='tag' className='srOnly'>
 					태그 모음
 				</label>
-				<input type='text' name='tags' value='' placeholder='#태그입력' />
+				<TagInput>
+					<input
+						type='text'
+						name='tag'
+						value={tagInput}
+						onChange={changeTagInput}
+						placeholder='#태그입력'
+					/>
+					<button type='button' onClick={validateTag}>
+						<Icon className='icon' $size={30} $fontSize={18} $iconColor='#c1c1c1'>
+							<IoMdAdd />
+						</Icon>
+						태그 추가하기
+					</button>
+				</TagInput>
+
+				<Tags>
+					{tags.map(tag => (
+						<span key={tag}>{tag}</span>
+					))}
+				</Tags>
 			</EditorFormField>
 			<SubmitButton>{isEditPage ? '수정하기' : '등록하기'}</SubmitButton>
 		</FormWrapper>
@@ -177,6 +270,11 @@ const EditorFormField = styled(StyledStack)`
 	.ql-container.ql-snow::after {
 		bottom: 0;
 	}
+`;
+
+const TagInput = styled.div`
+	position: relative;
+	width: 100%;
 
 	input {
 		position: relative;
@@ -186,6 +284,35 @@ const EditorFormField = styled(StyledStack)`
 		border: none;
 		outline: none;
 		background-color: transparent;
+	}
+
+	button {
+		position: absolute;
+		top: 48%;
+		right: 14px;
+		display: flex;
+		align-items: center;
+		border: none;
+		background-color: transparent;
+		transform: translateY(-50%);
+		color: #c1c1c1;
+	}
+
+	svg {
+		position: relative;
+		bottom: -1px;
+	}
+`;
+
+const Tags = styled(StyledStack)`
+	padding: 10px;
+	gap: 4px;
+
+	span {
+		display: inline-block;
+		padding: 2px 6px;
+		border-radius: 4px;
+		background-color: #eee;
 	}
 `;
 
