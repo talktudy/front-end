@@ -1,17 +1,18 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import LogoImage from '../img/logo.png';
+import LogoImage from '@/img/logo.png';
 
-const LoginPage = () => {
+const Login = () => {
 	return (
 		<LoginWrap>
 			<div>
 				<LogoImg src={LogoImage} alt='talktudy logo' />
 			</div>
 			<div>
+				{/* <div>로그인</div> */}
 				<div>
-					<InputTitle>아이디</InputTitle>
-					<LoginInput type='text' name='input_id' placeholder='아이디를 입력하세요' />
+					<InputTitle>이메일</InputTitle>
+					<LoginInput type='text' name='input_id' placeholder='이메일를 입력하세요' />
 				</div>
 				<div>
 					<InputTitle>패스워드</InputTitle>
@@ -27,16 +28,22 @@ const LoginPage = () => {
 			<ButtonWrap>
 				<LoginButton type='submit'>Log in</LoginButton>
 			</ButtonWrap>
-			<div>소셜로그인?</div>
+			<LoginBtnDiv>
+				{/* <div>아이디 찾기</div>
+				<div>패스워드 찾기</div> */}
+				<div>
+					<StyledLink to='/join'>회원가입</StyledLink>
+				</div>
+			</LoginBtnDiv>
 		</LoginWrap>
 	);
 };
 
-export default LoginPage;
+export default Login;
 
 const LoginWrap = styled.div`
-	width: 400px;
-	height: 500px;
+	width: 500px;
+	height: 650px;
 	margin: 0 auto;
 	margin-top: 3rem;
 	text-align: -webkit-center;
@@ -60,6 +67,7 @@ const LoginInput = styled.input`
 	font-size: 24px;
 	border-radius: 10px;
 	padding: 5px 10px 5px 10px;
+	border: none;
 `;
 
 const CheckWrap = styled.div`
@@ -68,12 +76,25 @@ const CheckWrap = styled.div`
 `;
 const ButtonWrap = styled.div`
 	padding: 1.5rem 0 1.5rem 0;
-	border-bottom: 1px solid gray;
 `;
 const LoginButton = styled.button`
 	width: 80%;
+	height: 3rem;
 	font-size: 1.5rem;
 	border: 1px solid black;
 	border-radius: 10px;
 	background-color: #fbd85d;
+	color: white;
+	border: none;
+`;
+
+const LoginBtnDiv = styled.div`
+	display: flex;
+	justify-content: space-evenly;
+`;
+
+const StyledLink = styled(Link)`
+	text-decoration: none;
+	color: black;
+	font-size: 24px;
 `;

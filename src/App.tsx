@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-
 import { Header } from '@components/index';
 import {
 	ChatListPage,
@@ -9,6 +8,7 @@ import {
 	DetailPage_owner,
 	RegisterPage,
 	EditPage,
+	JoinPage,
 } from '@pages/index';
 import './global.css';
 
@@ -23,7 +23,8 @@ function App() {
 					<Route path='/register' element={<RegisterPage />} />
 					<Route path=':boardId/edit' element={<EditPage />} />
 					<Route path='/login' element={<LoginPage />} />
-					<Route path='/detail' element={<DetailPage />} />
+					<Route path='/detail/:id' element={<DetailPage />} />
+					<Route path='/join' element={<JoinPage />} />
 					<Route path='/detail/own' element={<DetailPage_owner />} />
 				</Routes>
 			</main>
