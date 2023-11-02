@@ -8,9 +8,17 @@ interface FilterButton {
 	label: string;
 	onChange?: React.ChangeEventHandler<HTMLInputElement>;
 	defaultChecked?: boolean;
+	checked?: boolean;
 }
 
-const FilterButton = ({ id, name, label, onChange, defaultChecked = false }: FilterButton) => {
+const FilterButton = ({
+	id,
+	name,
+	label,
+	onChange,
+	defaultChecked = false,
+	checked,
+}: FilterButton) => {
 	return (
 		<Container $display='inline-block'>
 			<FilterInput
@@ -20,6 +28,7 @@ const FilterButton = ({ id, name, label, onChange, defaultChecked = false }: Fil
 				className='srOnly'
 				onChange={onChange}
 				defaultChecked={defaultChecked}
+				checked={checked}
 			/>
 			<FilterLabel htmlFor={id}>{label}</FilterLabel>
 		</Container>

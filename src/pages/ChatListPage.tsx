@@ -65,7 +65,7 @@ const ChatPage = () => {
 	);
 
 	const queries = `?page=${page}&size=12&orderBy=${orderBy}&interests=${interestsInStr}${searchType}${searchKeyword}`;
-	const query = useQuery(['studyLists', queries], () => getChatLists(queries));
+	const query = useQuery(['ChatLists', queries], () => getChatLists(queries));
 
 	return (
 		<ContentWrapper>
