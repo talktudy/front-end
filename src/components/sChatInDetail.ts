@@ -25,6 +25,15 @@ export const SChatInDetail = styled.div`
 		.chat_log {
 			height: 80%;
 			width: 100%;
+
+			.message {
+				background-color: #fff;
+				float: right;
+				padding: 10px 10px;
+				border-radius: 10px;
+				margin-right: 10px;
+				margin-top: 10px;
+			}
 		}
 
 		.chat_input {
