@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import SockJS from 'sockjs-client';
 // import StompJs from 'stompjs';
 import axios from 'axios';
-import * as StompJs from '@stomp/stompjs';
 import webstomp from 'webstomp-client';
 
 let stompClient: any;
@@ -36,7 +35,7 @@ const ChatInDetail = () => {
 		}
 	};
 
-	const getChatLog = async () => {
+	/*const getChatLog = async () => {
 		try {
 			const res = await axios.get(
 				`https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app:443/api/chat/${chatRoomId}`,
@@ -51,15 +50,15 @@ const ChatInDetail = () => {
 		} catch (error) {
 			console.log(error);
 		}
-	};
+	};*/
 	// getChatLog();
 
-	const callbackSubscribe = (response: any) => {
+	/*const callbackSubscribe = (response: any) => {
 		if (response.body) {
 			console.log(response);
 			console.log(JSON.parse(response.body));
 		}
-	};
+	};*/
 
 	const connectChat = async () => {
 		try {
@@ -154,17 +153,17 @@ const ChatInDetail = () => {
 
 	// 예슬님 코드 merge후 axios interceptor 적용
 	const sendMessage = (msg: string) => {
-		// stomp_client.send(
-		// 	'/app/chat/message',
-		// 	{},
-		// 	JSON.stringify({
-		// 		messageType: 'TALK',
-		// 		chatRoomId: chatRoomId,
-		// 		nickname: '새로운닉네임',
-		// 		message: msg,
-		// 		email: 'test@test.com',
-		// 	})
-		// );
+		stompClient.send(
+			'/app/chat/message',
+			{},
+			JSON.stringify({
+				messageType: 'TALK',
+				chatRoomId: chatRoomId,
+				nickname: '새로운닉네임',
+				message: msg,
+				email: 'test@test.com',
+			})
+		);
 	};
 
 	const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
