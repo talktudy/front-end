@@ -11,7 +11,6 @@ import {
 	EditPage,
 	JoinPage,
 } from '@pages/index';
-import './global.css';
 
 const queryClient = new QueryClient();
 
