@@ -64,6 +64,7 @@ const DetailPage = () => {
 					},
 					withCredentials: true,
 				});
+				console.log(res.data);
 			} catch (error) {
 				console.log(error);
 			}
