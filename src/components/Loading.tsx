@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Spinner from '@assets/spinner.gif';
+import Spinner from '@assets/Spinner.gif';
 
 const Loading = () => {
 	return (
