@@ -4,6 +4,7 @@ import { SDetailPage } from './sDetailPage';
 import { AiOutlineEye } from 'react-icons/ai';
 import { useParams } from 'react-router';
 import DOMPurify from 'dompurify';
+import request from '@/api/request';
 import axios from 'axios';
 
 interface IData {
@@ -51,29 +52,23 @@ const DetailPage = () => {
 		setText(event.target.value);
 	};
 
-	const submitHandler = (event: React.FormEvent) => {
+	const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		// 토큰을 받아와서 headers에 추가하기.
-		// const applyStudy = async () => {
-		// 	try {
-		// 		const res = await axios.post(
-		// 			`https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app:443/api/study/apply/${2}`,
-		// 			text,
-		// 			{
-		// 				headers: {
-		// 					'Content-Type': 'application/json',
-		// 					Authorization: 'token',
-		// 				},
-		// 				withCredentials: true,
-		// 			}
-		// 		);
-		// 	} catch (error) {
-		// 		console.log(error);
-		// 	}
-		// };
-		// applyStudy();
-		// console.log(text);
+		const applyStudy = async () => {
+			try {
+				const res = await request.post(`/study/apply/${id}`, text, {
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					withCredentials: true,
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		applyStudy();
 	};
 	useEffect(() => {
 		getData();

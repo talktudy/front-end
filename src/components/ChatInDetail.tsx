@@ -30,6 +30,7 @@ const ChatInDetail = () => {
 			);
 			//console.log(res.data);
 			setChatRoomId(res.data.chatRoomId);
+			connectChat();
 		} catch (error) {
 			console.log(error);
 		}
@@ -61,87 +62,87 @@ const ChatInDetail = () => {
 	};
 
 	const connectChat = async () => {
-		// try {
-		// 	const client = new StompJs.Client({
-		// 		brokerURL: 'https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app/chat',
-		// 		connectHeaders: {},
-		// 		debug: function (str) {
-		// 			console.log(str);
-		// 		},
-		// 		reconnectDelay: 5000,
-		// 		heartbeatIncoming: 4000,
-		// 		heartbeatOutgoing: 4000,
-		// 	});
-		// 	client.onConnect = function (frame) {
-		// 		console.log('Connected!');
-		// 	};
-		// 	const callback = function (message: any) {
-		// 		if (message.body) {
-		// 			alert('got message with body ' + message.body);
-		// 		} else {
-		// 			alert('got empty message');
-		// 		}
-		// 	};
-		// 	setTimeout(function () {
-		// 		client.subscribe(`/topic/chat/room/${chatRoomId}`, callback);
-		// 	}, 1000);
-		// 	client.onStompError = function (frame) {
-		// 		console.log('Broker reported error: ' + frame.headers['message']);
-		// 		console.log('Additional details: ' + frame.body);
-		// 	};
-		// 	client.activate();
-		// 	setTimeout(function () {
-		// 		client.publish({
-		// 			destination: 'https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app/chat',
-		// 			body: 'Hello world',
-		// 		});
-		// 	}, 1500);
-		// 	const socket = new SockJS(
-		// 		'https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app/chat'
-		// 	);
-		// 	stompClient = webstomp.over(socket);
-		// 	stompClient.connect({}, (frame: any) => {
-		// 		console.log('Connected:' + frame);
-		// 	});
-		// 	setTimeout(function () {
-		// 		stompClient.subscribe(`/topic/chat/room/${chatRoomId}`, function (response: any) {
-		// 			if (response.body) {
-		// 				console.log(response);
-		// 				console.log(JSON.parse(response.body));
-		// 			}
-		// 		});
-		// 	}, 1000);
-		// 	setTimeout(function () {
-		// 		stompClient.send(
-		// 			'/app/chat/message',
-		// 			{},
-		// 			JSON.stringify({
-		// 				messageType: 'ENTER',
-		// 				chatRoomId: 1,
-		// 				nickname: '새로운닉네임',
-		// 				email: 'test@test.com',
-		// 			}),
-		// 			function (message: any) {
-		// 				console.log(JSON.parse(message.body));
-		// 			}
-		// 		);
-		// 	}, 2000);
-		// 	setIsEnter(true);
-		// } catch (error) {
-		// 	console.log(error);
-		// }
+		try {
+			/*	const client = new StompJs.Client({
+					brokerURL: 'https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app/chat',
+					connectHeaders: {},
+					debug: function (str) {
+						console.log(str);
+					},
+					reconnectDelay: 5000,
+					heartbeatIncoming: 4000,
+					heartbeatOutgoing: 4000,
+				});
+				client.onConnect = function (frame) {
+					console.log('Connected!');
+				};
+				const callback = function (message: any) {
+					if (message.body) {
+						alert('got message with body ' + message.body);
+					} else {
+						alert('got empty message');
+					}
+				};
+				setTimeout(function () {
+					client.subscribe(`/topic/chat/room/${chatRoomId}`, callback);
+				}, 1000);
+				client.onStompError = function (frame) {
+					console.log('Broker reported error: ' + frame.headers['message']);
+					console.log('Additional details: ' + frame.body);
+				};
+				client.activate();
+				setTimeout(function () {
+					client.publish({
+						destination: 'https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app/chat',
+						body: 'Hello world',
+					});
+				}, 1500);*/
+			const socket = new SockJS(
+				'https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app/chat'
+			);
+			stompClient = webstomp.over(socket);
+			await stompClient.connect({}, (frame: any) => {
+				console.log('Connected:' + frame);
+			});
+			setTimeout(function () {
+				stompClient.subscribe(`/topic/chat/room/${chatRoomId}`, function (response: any) {
+					if (response.body) {
+						console.log(response);
+						console.log(JSON.parse(response.body));
+					}
+				});
+			}, 1000);
+			setTimeout(function () {
+				stompClient.send(
+					'/app/chat/message',
+					{},
+					{
+						messageType: 'ENTER',
+						chatRoomId: 1,
+						nickname: '새로운닉네임',
+						email: 'test@test.com',
+					},
+					function (message: any) {
+						console.log(JSON.parse(message.body));
+					}
+				);
+			}, 2000);
+			setIsEnter(true);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	// const connect = () => {
 	// 	const clientData = new StompJs.Client({
-	// 		brokerURL: 'wss://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app/chat',
+	// 		brokerURL: 'https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app/chat',
 	// 		connectHeaders: {},
 	// 		debug: function (str) {
 	// 			console.log(str);
 	// 		},
-	// 		reconnectDelay: 5000, // 자동 재 연결
-	// 		heartbeatIncoming: 4000,
-	// 		heartbeatOutgoing: 4000,
+	// 		reconnectDelay: 10000,
+	// 		heartbeatIncoming: 5000,
+	// 		heartbeatOutgoing: 5000,
 	// 	});
 
 	// 	clientData.onConnect = function () {
@@ -185,34 +186,34 @@ const ChatInDetail = () => {
 		// connect();
 
 		// SockJS 및 STOMP 클라이언트 연결 설정
-		const socket = new SockJS(
-			'https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app/chat'
-		);
-		const stompClient = webstomp.over(socket);
+		// const socket = new SockJS(
+		// 	'https://port-0-talktudy-backend-12fhqa2blnizs97s.sel5.cloudtype.app/chat'
+		// );
+		// const stompClient = webstomp.over(socket);
 
-		// TOKEN은 로그인 Access 토근이 필요하여 Authorization 필드의 값으로 넣어주었다.
-		stompClient.connect({}, () => {
-			setTimeout(function () {
-				stompClient.subscribe(`/topic/chat/room/${chatRoomId}`, message => {
-					// 새로운 메시지 도착 시 실행되는 콜백 함수
-					const newMessage = JSON.parse(message.body);
-					setChatLog(prevMessages => [...prevMessages, newMessage]);
-				});
-			}, 1000);
-		});
+		// // TOKEN은 로그인 Access 토근이 필요하여 Authorization 필드의 값으로 넣어주었다.
+		// stompClient.connect({}, () => {
+		// 	setTimeout(function () {
+		// 		stompClient.subscribe(`/topic/chat/room/${chatRoomId}`, message => {
+		// 			// 새로운 메시지 도착 시 실행되는 콜백 함수
+		// 			const newMessage = JSON.parse(message.body);
+		// 			setChatLog(prevMessages => [...prevMessages, newMessage]);
+		// 		});
+		// 	}, 1000);
+		// });
 
-		setTimeout(function () {
-			stompClient.send(
-				'/app/chat/message',
-				{},
-				{
-					messageType: 'ENTER',
-					chatRoomId: 1,
-					nickname: '새로운닉네임',
-					email: 'test@test.com',
-				}
-			);
-		}, 2000);
+		// setTimeout(function () {
+		// 	stompClient.send(
+		// 		'/app/chat/message',
+		// 		{},
+		// 		{
+		// 			messageType: 'ENTER',
+		// 			chatRoomId: 1,
+		// 			nickname: '새로운닉네임',
+		// 			email: 'test@test.com',
+		// 		}
+		// 	);
+		// }, 2000);
 	}, []);
 
 	return (
@@ -242,7 +243,7 @@ const ChatInDetail = () => {
 export default ChatInDetail;
 
 const SChatInDetail = styled.div`
-	width: 30%;
+	width: 43%;
 	margin-top: 30px;
 
 	.writer {
