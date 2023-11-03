@@ -1,17 +1,28 @@
-import Container from '@/components/Container';
-
 import styled from 'styled-components';
+
+import Container from '@/components/Container';
 
 interface FilterButton {
 	id: string;
 	name: string;
 	label: string;
+	onChange?: React.ChangeEventHandler<HTMLInputElement>;
+	defaultChecked?: boolean;
+	checked?: boolean;
 }
 
-const FilterButton = ({ id, name, label }: FilterButton) => {
+const FilterButton = ({ id, name, label, onChange, defaultChecked, checked }: FilterButton) => {
 	return (
 		<Container $display='inline-block'>
-			<FilterInput type='checkbox' id={id} name={name} className='srOnly' />
+			<FilterInput
+				type='checkbox'
+				id={id}
+				name={name}
+				className='srOnly'
+				onChange={onChange}
+				defaultChecked={defaultChecked}
+				checked={checked}
+			/>
 			<FilterLabel htmlFor={id}>{label}</FilterLabel>
 		</Container>
 	);

@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Route, Routes } from 'react-router-dom';
 import { Header } from '@components/index';
 import {
@@ -12,9 +13,11 @@ import {
 } from '@pages/index';
 import './global.css';
 
+const queryClient = new QueryClient();
+
 function App() {
 	return (
-		<>
+		<QueryClientProvider client={queryClient}>
 			<Header />
 			<main>
 				<Routes>
@@ -28,7 +31,7 @@ function App() {
 					<Route path='/detail/own' element={<DetailPage_owner />} />
 				</Routes>
 			</main>
-		</>
+		</QueryClientProvider>
 	);
 }
 
