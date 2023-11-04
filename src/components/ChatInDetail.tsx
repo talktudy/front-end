@@ -110,7 +110,7 @@ const ChatInDetail = () => {
 						console.log(JSON.parse(response.body));
 					}
 				});
-			}, 1000);
+			}, 0);
 			setTimeout(function () {
 				stompClient.send(
 					'/app/chat/message',
@@ -125,7 +125,7 @@ const ChatInDetail = () => {
 						console.log(JSON.parse(message.body));
 					}
 				);
-			}, 2000);
+			}, 0);
 			setIsEnter(true);
 		} catch (error) {
 			console.log(error);
