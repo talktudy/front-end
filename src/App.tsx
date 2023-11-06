@@ -12,20 +12,31 @@ import {
 	JoinPage,
 } from '@pages/index';
 import './global.css';
+import { useState } from 'react';
 
 const queryClient = new QueryClient();
 
 function App() {
+	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+	const handleLogin = () => {
+		setIsLoggedIn(true);
+	};
+
+	const handleLogout = () => {
+		setIsLoggedIn(false);
+	};
+
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Header />
+			<Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 			<main>
 				<Routes>
 					<Route path='/' element={<BoardListPage />} />
 					<Route path='/chat' element={<ChatListPage />} />
 					<Route path='/register' element={<RegisterPage />} />
 					<Route path=':boardId/edit' element={<EditPage />} />
-					<Route path='/login' element={<LoginPage />} />
+					<Route path='/login' element={<LoginPage onIsLogin={handleLogin} />} />
 					<Route path='/detail/:id' element={<DetailPage />} />
 					<Route path='/join' element={<JoinPage />} />
 					<Route path='/detail/own' element={<DetailPage_owner />} />

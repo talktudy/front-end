@@ -4,8 +4,13 @@ import styled from 'styled-components';
 import LogoImage from '@/img/logo.png';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import Swal from 'sweetalert2';
 
-const Login = () => {
+interface LoginProps {
+	onIsLogin: () => void;
+}
+
+const Login: React.FC<LoginProps> = ({ onIsLogin }) => {
 	const navigate = useNavigate();
 	// 로그인에 필요한 변수 선언
 	const [email, setEmail] = useState<string>('');
@@ -71,9 +76,11 @@ const Login = () => {
 						setCookie('rememberEmail', email);
 					}
 					navigate('/');
+					onIsLogin();
 				})
 				.catch(function (error: any) {
 					console.log('onLogin error : ', error);
+					Swal.fire('로그인에 실패하였습니다.</br> 다시 시도해 주세요!');
 				});
 		}
 	};

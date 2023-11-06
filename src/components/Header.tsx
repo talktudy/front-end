@@ -2,12 +2,20 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import LogoImage from '../img/logo.png';
+import axios from 'axios';
 
 interface HeaderProps {
-	isLoggedIn?: boolean; // Add a prop to check if user is logged in
+	isLoggedIn: boolean;
+	onLogout: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ isLoggedIn }) => {
+const Header: React.FC<HeaderProps> = ({ isLoggedIn, onLogout }) => {
+	const handleLogout = () => {
+		localStorage.removeItem('accessToken');
+		localStorage.removeItem('refreshToken');
+		onLogout();
+	};
+
 	return (
 		<HeaderWrap>
 			{/* 로고영역 */}
@@ -27,13 +35,20 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn }) => {
 			<UserSection>
 				{isLoggedIn ? (
 					<>
-						{/* <AlarmIcon />
-						<UserIcon /> */}
-						<Link to='/register'>새 글 쓰기</Link>
+						<Dropdown>
+							<a>내 메뉴</a>
+							<DropdownContent>
+								<DropboxMenu>
+									<Link to='/register'>새 글 쓰기</Link>
+									<a onClick={() => alert('준비 중입니다.')}>마이페이지</a>
+								</DropboxMenu>
+							</DropdownContent>
+						</Dropdown>
+
+						<button onClick={handleLogout}>로그아웃</button>
 					</>
 				) : (
 					<>
-						{/* You can replace this with an actual login button */}
 						<Link to='/login'>
 							<LoginBtn>Login</LoginBtn>
 						</Link>
@@ -93,4 +108,26 @@ const LoginBtn = styled.button`
 	font-size: 1.5rem;
 	border: none;
 	background-color: #f0f0f0;
+`;
+
+const Dropdown = styled.li`
+	position: relative;
+	display: inline-block;
+`;
+const DropdownContent = styled.div`
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	top: 100%;
+
+	${Dropdown}:hover & {
+		display: block;
+	}
+`;
+const DropboxMenu = styled.div`
+	display: flex;
+	flex-direction: column;
 `;
